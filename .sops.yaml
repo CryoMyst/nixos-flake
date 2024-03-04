@@ -1,0 +1,12 @@
+keys:
+  - &admin age1farnysvscm9yns4za76782fxua4ncqz6dun3d8lgdytncrugap0sp6jc03
+  - &cryo-desktop age1cv9qd3nf9nx8dxdkqhfcarfvk7x6330gr3gvaqa5yrq0x0wue4fswtx9qy
+creation_rules:
+  - path_regex: ^.*/sops\.backup\.yaml$
+    key_groups:
+    - age:
+      - *admin
+  - path_regex: systems/cryo-desktop/secrets\.yaml$
+    key_groups:
+    - age:
+      - *cryo-desktop

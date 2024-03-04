@@ -1,0 +1,7 @@
+{
+  imports = [
+    ./social
+    ./sway
+    ./terminal
+  ];
+}
