@@ -21,6 +21,7 @@ in {
       sway.enable = true;
     };
     features = {
+      boot.enable = true;
       graphics.gpuTypes = ["amd"];
       sops = {
         enable = true;
@@ -28,21 +29,16 @@ in {
     };
   };
 
-  sops = {
-    defaultSopsFile = ./secrets.yaml;
-    age.keyFile = "/keys/nix-sops/key.txt";
-    secrets = {
-      cryomyst-password = {
-        neededForUsers = true;
-      };
-    };
-  };
+ sops = {
+   defaultSopsFile = ./secrets.yaml;
+   age.keyFile = "/keys/nix-sops/key.txt";
+   secrets = {
+     cryomyst-password = {
+       neededForUsers = true;
+     };
+   };
+ };
   users.users."cryomyst".hashedPasswordFile = config.sops.secrets.cryomyst-password.path;
-
-  fileSystems."/mnt/nvme2" = {
-    device = "/dev/disk/by-uuid/d69b4e16-344f-4146-b55f-c4bc1518ea38";
-    fsType = "ext4";
-  };
 
   boot.kernelParams = [
     "zswap.enabled=1"
